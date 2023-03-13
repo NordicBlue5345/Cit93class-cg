@@ -1,11 +1,13 @@
 //Funtions are fun
 
 function doMath (a, b) { a=10, b=4
-
-    console.log(`this is the result ${a * b}`)
-    console.log(`this is the result ${a / b}`)
-    console.log(`this is the result ${a - b}`)
-    console.log(`this is the result ${a + b}`)
+    let result = a * b
+    return result
+  //  console.log(`this is the result ${a * b}`)
+   // console.log(`this is the result ${a / b}`)
+  //  console.log(`this is the result ${a - b}`)
+   // console.log(`this is the result ${a + b}`)
 }
 
-doMath(10, 4)
+let returnValue = doMath(10, 4)
+console.log(`result was returned from the function ${result}`)
