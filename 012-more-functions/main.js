@@ -1,5 +1,7 @@
 //Update the DOM
 
+const myArr = ['cassandra', 30]
+
 const updateDOM = (input) => {
     const divEl = document.getElementById('output')
     const p = document.createElement('p')
@@ -7,11 +9,14 @@ const updateDOM = (input) => {
     divEl.appendChild(p)
 }
 
-const BlueTieSales = (quantity, price) => quantity * price
-const RedShirtSales = (quantity, price) => quantity * price
+const trackVacation= (time, distance, cost) => {
+    const Vacation = (time * distance)
+    const VacationCost = (cost * distance) 
+    myArr.push(time, distance)
+}
 
 
-updateDOM(BlueTieSales(25, 2.50))
-updateDOM(RedShirtSales(50, 13.50))
+updateDOM(trackVacation(100, 1200, 11.12))
+updateDOM(trackVacation(30, 450, 17.40))
 
 
