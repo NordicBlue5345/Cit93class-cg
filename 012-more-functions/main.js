@@ -1,6 +1,6 @@
 //Update the DOM
 
-const myArr = ['cassandra', 30]
+const myArr = []
 
 const updateDOM = (input) => {
     const divEl = document.getElementById('output')
@@ -9,14 +9,16 @@ const updateDOM = (input) => {
     divEl.appendChild(p)
 }
 
-const trackVacation= (time, distance, cost) => {
-    const Vacation = (time * distance)
-    const VacationCost = (cost * distance) 
-    myArr.push(time, distance)
+const trackMPGCost= (miles, gallons, price = 3.79) => {
+    const MPG = miles/gallons
+    const tripCost = gallons * price
+    updateDOM(`Mileage is ${MPG} and trip cost is ${tripCost}`) 
+    myArr.push(MPG, tripCost)
 }
 
 
-updateDOM(trackVacation(100, 1200, 11.12))
-updateDOM(trackVacation(30, 450, 17.40))
+trackMPGCost(360, 15, 5.40)
+trackMPGCost(320, 12, 5)
+updateDOM(myArr)
 
 

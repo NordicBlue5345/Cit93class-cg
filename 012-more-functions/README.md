@@ -6,3 +6,6 @@
 
 ## Does this Array concept Make sense?
 - I think this concept is making sense for the most part. While it is still very new and not something I have looked at before, I can see where the useful functionality of it comes in handy.
+
+## Was I able to find the error in the video?
+- to be quite honest, I was not able to find the error in the video. But I think this is because I thought that the end results of my code was correct despite not showing up on the web page. This is because I was able to make the code work with no errors. I did enjoy seeing how you were able to fix the error and make the code work the way it is supposed to.
