@@ -2,11 +2,16 @@
 
 const updateDOM = (input) => {
     const divEl = document.getElementById('output')
-    const p = document.createElement('h1')
+    const p = document.createElement('p')
     p.textContent = input
     divEl.appendChild(p)
 }
 
-updateDOM('This is my change') 
+const BlueTieSales = (quantity, price) => quantity * price
+const RedShirtSales = (quantity, price) => quantity * price
+
+
+updateDOM(BlueTieSales(25, 2.50))
+updateDOM(RedShirtSales(50, 13.50))
 
 
