@@ -1,0 +1,2 @@
+## How well do you feel you understand the code?
+- the code is still pretty foreign to me, but as I go along with it I can see its purpose and functionality. I am understanding better over time why we are doing things in certain ways and what it looks like when you change even the smallest of things. I feel like as long as I keep at it I will pick it up in no time.
