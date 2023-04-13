@@ -1,5 +1,6 @@
 const FORM = document.getElementById('form-input')
 const ERR = document.getElementById('err')
+const CALCULATE_AVG = document.getElementById('calculateAvg')
 
 const MY_MPG = []
 const MY_TRIP_COST = []
@@ -48,9 +49,20 @@ FORM.addEventListener('submit', (e) => {
     const miles = parseInt(e.target.miles.value)
     const gallon = parseInt(e.target.gallons.value)
     const price = parseInt(e.target.price.value)
-    if (miles === 0) {
+    if (miles === 0 || gallons === 0 || price === 0) {
         errMsg.push('Make sure you input value greater than zero. Try Again! ')
+        setTimeout(() => {
+            console.log("Delayed for 1 second.");
+          }, 3000);
     } 
+
+    if(price > 1000) {
+        errMsg.push('Really!!!?? I think this is in error...Try again')
+
+        setTimeout(() => {
+            console.log("Delayed for 1 second.");
+          }, 3000);
+    }
         
     if(errMsg.length > 0) {
         ERR.textContent = errMsg
@@ -61,3 +73,13 @@ FORM.addEventListener('submit', (e) => {
     
 
 })
+
+
+
+trackMPGandCost(360, 15, 5.40)
+trackMPGandCost(320, 12, 5)
+trackMPGandCost(500, 11, 3.50)
+trackMPGandCost(320, 12, 5)
+trackMPGandCost(50, 5, 2.40)
+trackMPGandCost(320, 12, 5)
+calculateAvg()
