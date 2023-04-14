@@ -3,31 +3,47 @@ const myArr = []
 // console.log(typeof myObj)
 // console.log(typeof myArr)
 // console.log(myArry == myObj)
-const myNumber = 1645
-const myCountry = {
-    name: 'Wonderland',
-    year: '1645',
-    size: 500,
+const myNumber = 9
+const myObj = {
+    name: 'Cassandra',
+    age: 29,
+    hobbies: ['drawing', 'singing', 'reading'],
     mobile: {
-        make: 'samsung 21',
+        make: 'pixel 7',
         OS: 'android'
     },
-    myGreeting: function(history) {
-        return this.name + ' ' + this.year + ' ' + this. size;
-        call(Update) + this.myGreeting `This is the town of Wonderland. Famously named after the storybook tale`
+    myGreeting: function(person) {
+    return `${this.name} who loves to ${this.hobbies[0]} says What is UP ${person}`
+    },
+
+    increaseLikes: function(){
+    this.likes += 1
     }
 }
 
-const towns = [];
-   towns[0] ="MadHatter",
-   towns[1] ="RedQueen",
-   towns[3] ="WhiteKing",
-   towns[4] ="Jabberwoki",
-   towns[5] ="Alice",
+const color = {
+    name: 'blue',
+    type: 'watercolor',
+}
 
-   (towns == "MadHatter")
-        //block off code to be executed if the condition is true
-        greeting = " This is the town MadHatter"
+const blueColor = color
+    this.color += 2
+console.log(blueColor)
 
-const Update = history.year
-console.log(Update)
+const cassandraObj = myObj
+cassandraObj.increaseLikes()
+console.log(cassandraObj) 
+
+const greeting = myObj.myGreeting('jane')
+console.log(greeting)
+cassandraObj.age = 29
+
+console.log(myObj.mobile.make.length)
+
+for(key in myObj) {
+    console.log(`key ${key} and value ${myObj[key]} `)
+}
+
+// comment where you played around with these methods
+
+//topics prim and obj <> looping over obj <> passed by value or referance
