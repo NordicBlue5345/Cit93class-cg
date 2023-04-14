@@ -44,7 +44,7 @@ const calculateAvg = () => {
 }
 
 FORM.addEventListener('submit', (e) => {
-    e.preventDefault
+    e.preventDefault()
     const errMsg = []
     const miles = parseInt(e.target.miles.value)
     const gallon = parseInt(e.target.gallons.value)
