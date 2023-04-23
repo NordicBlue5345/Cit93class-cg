@@ -1,11 +1,11 @@
 const FORM = document.getElementById('form-input')
 const ERR = document.getElementById('err')
-const CALCULATE_AVG = document.getElementById('output-avg')
+const AVG_OUTPUT = document.getElementById('output-avg')
 
 //const MY_MPG = []
 //const MY_TRIP_COST = []
 
-const MY_AVG = []
+const MY_DATA = []
 
 const updateDOM = (input, id) => {
     const divEl = document. querySelector(id)
@@ -42,14 +42,14 @@ const trackMPGandCost = (obj) => {
 const calculateAvg = () => {
     let sumMPG = 0
     let sumTripCost = 0
-    MY_AVG.forEach(obj => {
+    MY_DATA.forEach(obj => {
         sumMPG += obj.MPG
         sumTripCost += obj.tripCost
     })
     //let sumMPG = calculateSUM(myMPG)
     //let avgTripCost = Math.round(calculateSUM(myTripCost)
-    let avgMPG = Math.round(sumMPG/MY_AVG.length)
-    let avgTripCost = Math.round(sumTripCost/MY_AVG.length)
+    let avgMPG = Math.round(sumMPG/MY_DATA.length)
+    let avgTripCost = Math.round(sumTripCost/MY_DATA.length)
     updateDOM(`Average MPG is ${avgMPG}`, '#output-avg')
     updateDOM(`Average Trip is ${avgTripCost}`, '#output-avg')
 }
@@ -77,7 +77,7 @@ const calculateAvg = () => {
         ERR.textContent = ''
         AVG_OUTPUT.textContent = ''
         const updatedMyAvg = trackMPGandCost(newMyAvg)
-        MY_AVG.push(updatedMyAvg)
+        MY_DATA.push(updatedMyAvg)
         calculateAvg()
     }   
     FORM.reset()
