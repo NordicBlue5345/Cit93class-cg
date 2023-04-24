@@ -1,0 +1,3 @@
+##How would you feel about creating you own CRUD app operations?
+
+- So I know im really behind on this input, but if I was giving you input on time then I would say that I think it would be a wonderful idea. Honestly I think it would be a great opportunity to learn these concepts even better because you would be implementing them in your own way and in a format that is interesting to you. Does that make sense? I say this because when refractor during the weekly lessons I find myself really becoming confused. I can see and understand what you are doing, and why you are doing it, but it feels jumbled and all over the place. Im not sure if this makes sense, hopefully it does, it very well could just be me lol.
