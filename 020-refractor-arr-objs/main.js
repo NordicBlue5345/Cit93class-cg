@@ -2,9 +2,6 @@ const FORM = document.getElementById('form-input')
 const ERR = document.getElementById('err')
 const AVG_OUTPUT = document.getElementById('output-avg')
 
-//const MY_MPG = []
-//const MY_TRIP_COST = []
-
 const MY_DATA = []
 
 const updateDOM = (input, id) => {
@@ -14,30 +11,17 @@ const updateDOM = (input, id) => {
     divEl.appendChild(p)
 }
 
-const trackMPGandCost = (obj) => {
-    const MPG = Math.round(obj.miles/obj.gallon)
-    const tripCost = Math.round(obj.gallons * obj.price)
+const trackMPGandCost = (miles, gallons, price) => {
+    const MPG = Math.round(miles/gallon)
+    const tripCost = Math.round(gallons * price)
     updateDOM(`Miles per gallon is ${MPG} and trip cost is ${tripCost}`, '#output')
-    obj.MPG = MPG
-    obj.tripCost = tripCost
-    //MY_MPG.push(MPG)
-    //MY_TRIP_COST.push(tripCost)
-    return obj
+    return  {
+        MPG: MPG,
+        tripCost: tripCost,
+        miles: miles,
+        gallons:gallons
+    }
 }
-
-//const calculateSUM = (arr) => {
-    //let SUM = 0
-      //   for (let i =0; i < arr.length; i++) {
-    //     sum = sum + arr[i]
-    // }
-    // arr.forEach(Element => {
-    //      sum += Element
-    // })
-    //for (value of arr) {
-        //SUM += value
-    //}
-   // return SUM
-//}
 
 const calculateAvg = () => {
     let sumMPG = 0
@@ -46,43 +30,46 @@ const calculateAvg = () => {
         sumMPG += obj.MPG
         sumTripCost += obj.tripCost
     })
-    //let sumMPG = calculateSUM(myMPG)
-    //let avgTripCost = Math.round(calculateSUM(myTripCost)
-    let avgMPG = Math.round(sumMPG/MY_DATA.length)
-    let avgTripCost = Math.round(sumTripCost/MY_DATA.length)
+    const avgMPG = Math.round(sumMPG/MY_DATA.length)
+    const avgTripCost = Math.round(sumTripCost/MY_DATA.length)
     updateDOM(`Average MPG is ${avgMPG}`, '#output-avg')
     updateDOM(`Average Trip is ${avgTripCost}`, '#output-avg')
 }
 
+const isFormValid = (miles, gallons, price) => {
+    const errMsg = []
+    if (miles === 0 || gallons === 0 || price === 0) {
+        errMsg.push('Make sure you input value greater than zero. Try Again! ')
+    }
+    if (price > 1000) {
+        errMsg.push('Really!!!?? I think this is in error...Try again')
+    }
+    if (errMsg.length > 0) {
+        ERR.textContent = errMsg
+        return false
+    } else {
+        return true
+    }
+}
+
     FORM.addEventListener('submit', (e) => {
     e.preventDefault()
-    const errMsg = []
+    // const errMsg = []
     const miles = parseInt(e.target.miles.value)
     const gallon = parseInt(e.target.gallons.value)
     const price = parseInt(e.target.price.value)
-    if (miles === 0 || gallons === 0 || price === 0) {
-        errMsg.push('Make sure you input value greater than zero. Try Again! ')
-    } 
-    if(price > 1000) {
-        errMsg.push('Really!!!?? I think this is in error...Try again')
-    }    
-    if(errMsg.length > 0) {
-        ERR.textContent = errMsg
-    } else {
-        const newMyAvg = {
-            miles: miles,
-            gallons: gallons,
-            prices: price
-        }
+    const isValid = isFormValid(miles, gallon, price)
+    if (isValid) {
+            // const newDataObj = {
+            //     miles: miles,
+            //     gallons: gallons,
+            //     prices: price
+            // }
         ERR.textContent = ''
         AVG_OUTPUT.textContent = ''
-        const updatedMyAvg = trackMPGandCost(newMyAvg)
-        MY_DATA.push(updatedMyAvg)
+        const updatedDataObj = trackMPGandCost(miles, gallons, price)
+        MY_DATA.push(updatedDataObj)
         calculateAvg()
-    }   
-    FORM.reset()
-    
-    
-
+    }
+    FORM.reset()  
 })
-
