@@ -1,19 +1,15 @@
- function getData() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve (46)
-        }, 1)
-    })
+async function start() {
+ const data = await fetch( 'https://api.weather.gov/points/{36.7378},{119.7871}')
+ const result = await data.json()
+ console.log(result.properties.periods[1].shortForecast)
  }
 
- async function start() {
- const result = await getData()
- console.log(result)
- }
-
- async function start2()
-    getData()
-    .then(result=> {
-        console.log(result)
+async function start2() {
+    fetch( 'https://api.weather.gov/points/{36.7378},{119.7871}')
+    .then(data => data.json())
+    .then(result => {
+        console.log(result.properties.periods[1].shortForcast)
     })
- start()
+}
+
+ start2()
