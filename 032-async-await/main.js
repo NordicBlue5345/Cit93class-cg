@@ -1,15 +1,28 @@
-async function start() {
- const data = await fetch( 'https://api.weather.gov/points/{36.7378},{119.7871}')
- const result = await data.json()
- console.log(result.properties.periods[1].shortForecast)
- }
-
-async function start2() {
-    fetch( 'https://api.weather.gov/points/{36.7378},{119.7871}')
-    .then(data => data.json())
-    .then(result => {
-        console.log(result.properties.periods[1].shortForcast)
+function getData() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(() => {
+            resolve('Kere is your DATA')
+            // reject('Something went wrong')
+         }, 1)
     })
 }
 
- start2()
+async function start() {
+    try {
+        const result = await getData()
+        // SUCCESS
+    }   catch (err) {
+        // FAILURE
+    } 
+}
+
+// async function start2() {
+//     const result = await getData()
+//     console.log(result)
+//      .catch(error => {
+//       console.log('Error: ${error}')
+//     })
+//     console.log(result)
+// }
+
+start2()
