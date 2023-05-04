@@ -10,7 +10,7 @@ async function getData() {
     try {
         const response = await fetch(request)
         const data = await response.json()
-        if(response.status === 200) {
+        if(response.status !== 200) {
         console.log('Success', data)
         }else {
             console.log('Server error', data.error.message)
