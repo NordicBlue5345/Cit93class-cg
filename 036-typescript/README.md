@@ -1,0 +1,1 @@
+- I did use the playground you provided at the top of this page to see the changes made from typescript to JavaScript. I tried to install typescript into VS but for some reason I couldn't get it to work, so with that I used the playground to help with the coding in this video.
