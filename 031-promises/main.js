@@ -1,39 +1,34 @@
-function getWeather() {
-    return new Promise(function (resolve, reject) {
+function fun1() {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
-        resolve('Cloudy')
+            reject('Bad Data')
         }, 100)
     })
 }
 
-function getWeatherIcon(weather) {
-    return new Promise(function (resolve, reject) {
+function fun2() {
+    console.log('Function 2')
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
-            switch (weather){
-                case 'Sunny':
-                    resolve('Sunny')
-                case 'Cloudy':
-                    resolve('Cloudy')
-                case 'Rainy':
-                    resolve('Rainy')
-                    break
-                default:
-                    reject('No weather found') 
-            }
+            resolved('Smile')
         }, 100)
     })
 }
 
 function onSuccess(data) {
-    console.log('Success ${data}')
+    console.log('Success: data')
 }
 
-function onError(error) {
-    console.log('Error: ${error}')
+function onError(errorCode) {
+    console.log('ERROR: ${errorCode}')
 }
 
+function onFinally() {
+    console.log('Finally Done')
+}
 
-getWeather().then(onSuccess, onError)
-.then(getWeatherIcon, onSuccess)
-.then(onSuccess, onError)
-
+fun1()
+.then(fun2)
+.then(onSuccess)
+.catch(onError)
+.finally(onFinally)
