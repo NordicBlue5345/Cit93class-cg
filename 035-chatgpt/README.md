@@ -14,3 +14,6 @@
 
 5. Is there a easier form of JavaScript?
 - Yes, I did ask this and I was not disappointed. I discovered that Python is more beginner friendly than JavaScript and that there are also some visual tools you can use to learn code that is beginner friendly also.
+
+
+- So of course right off the bat this video is interesting. The wy the world is going we are headed into a very tech heavy age. This will include, im sure, faster computers, AI, and other things. AI for me is still kinda of scary. I has its uses and if done right will help a lot of people. But if done wrong and it does end up taking over too many jobs, then thats going to hurt us as a society. Right now we already suffer from high unemployment and inflation, it would only make things worse if the AI programs caused people to lose jobs. But I do have high hope the AI will be done properly and developed enough to the point it can work along side us and not against us.
