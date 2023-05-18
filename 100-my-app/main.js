@@ -1,35 +1,24 @@
 // Global variables
-const decisionForm = document.getElementById('decision-form');
-const inputDataField = document.getElementById('input-data');
+let stringValue = "Hello";
+let numberValue = 10;
+let booleanValue = true;
 
-// Function to make a decision based on input data and selected option
-function makeDecision(data, option) {
-  let decision;
-  
-  if (option === 'Option 1') {
-    // Decision logic for Option 1
-    decision = `Option 1: ${data}`;
-  } else if (option === 'Option 2') {
-    // Decision logic for Option 2
-    decision = `Option 2: ${data}`;
-  } else if (option === 'Option 3') {
-    // Decision logic for Option 3
-    decision = `Option 3: ${data}`;
-  }
-  
-  // Return decision as an object
-  return { data, decision };
+// Calculation function
+function performCalculation(a, b) {
+  return a + b;
 }
 
-// Event listener for form submission
-decisionForm.addEventListener('submit', function (e) {
-  e.preventDefault();
-  
-  const inputData = inputDataField.value;
-  const selectedOption = document.querySelector('input[name="decision-option"]:checked').value;
-  
-  const result = makeDecision(inputData, selectedOption);
-  console.log(result);
-  
-  decisionForm.reset();
-});
+// Decision making process based on inputs and conditions
+function makeDecision() {
+  if (stringValue === "Hello" && numberValue > 5) {
+    console.log("Condition 1: String value is 'Hello' and number value is greater than 5");
+  } else if (booleanValue || (numberValue < 0 && stringValue !== "Goodbye")) {
+    console.log("Condition 2: Boolean value is true or number value is negative and string value is not 'Goodbye'");
+  } else {
+    const result = performCalculation(numberValue, 5);
+    console.log(`Condition 3: Result of calculation is ${result}`);
+  }
+}
+
+// Calling the decision making function
+makeDecision();
