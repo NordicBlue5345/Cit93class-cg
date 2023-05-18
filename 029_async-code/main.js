@@ -1,11 +1,35 @@
- let pizza 
- function orderPizza() {
-    console.log('order pizza')
+function orderPizza(callback) {
     setTimeout(() => {
-        pizza = new
-    }, 2000)
-    console.log('Pizza was ordered')
- }
+        const pizza = `Pizza`
+        callback()
+    } , 2000)
+}
 
- orderPizza()
- console.log('Eat ${pizza}')
+function pizzaReady(pizza) {
+    console.log(` eat time ${pizza}`)
+}
+
+orderPizza(pizzaReady)
+console.log(`call Qoli`)
+
+
+function thing1(callback) {
+    callback()
+    //call pizza sap
+}
+
+function things2(callback) {
+    callback()
+    // Order the Pizza
+}
+
+function thing3 (callback) {
+    callback()
+    //eat they
+}
+
+thing1(() => {
+    things2(() => {
+        thing3()
+    })
+})
