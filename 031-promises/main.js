@@ -1,34 +1,15 @@
-function fun1() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            reject('Bad Data')
-        }, 100)
+function fetchData() {
+    return new Promise(function(resolve, reject){
+        fetch('https://api.weather,gov,gridpoints/OKX/35,35/forecast')
+    .then(response => response.json())
+    .then(data => resolve(data.properties.periods[1].shortForecast));  
     })
+}  
+
+function displayData(weather) {
+    console.log('ERROR ${err}')
 }
 
-function fun2() {
-    console.log('Function 2')
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolved('Smile')
-        }, 100)
-    })
-}
-
-function onSuccess(data) {
-    console.log('Success: data')
-}
-
-function onError(errorCode) {
-    console.log('ERROR: ${errorCode}')
-}
-
-function onFinally() {
-    console.log('Finally Done')
-}
-
-fun1()
-.then(fun2)
-.then(onSuccess)
-.catch(onError)
-.finally(onFinally)
+fetchData()
+.then(displayData)
+.catch(oneError)
