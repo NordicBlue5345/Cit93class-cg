@@ -26,13 +26,14 @@ FORM.addEventListener('submit', (e) => {
     const price = parseFloat(e.target.price.value);
     const isValid = isFormValid(miles, gallons, price);
     if (isValid) {
-        ERR.textContent = '';
-        AVG_OUTPUT.textContent = '';
-        const dataObj = trackMPGandCost(miles, gallons, price);
-        MY_DATA.push(dataObj);
-        saveTripData(MY_DATA)
-        renderTable(MY_DATA, FORM);
-        calculateAvg(MY_DATA);
+      ERR.textContent = '';
+      AVG_OUTPUT.textContent = ''; // Clear previous average
+      const dataObj = trackMPGandCost(miles, gallons, price);
+      MY_DATA.push(dataObj);
+      saveTripData(MY_DATA);
+      renderTable(MY_DATA, FORM);
+      const average = calculateAvg(MY_DATA); // Calculate average
+      AVG_OUTPUT.textContent = `Average: ${average}`; // Update average rendering
     }
     FORM.reset();
-});
+  });
