@@ -8,7 +8,16 @@ const TBL_OUTPUT = document.getElementById('table-out');
 /* MY_DATA is global array that will be updated by the user input with objects from form input values 
 and calculate data */
 
-const MY_DATA = [];
+function getTripData() {
+    const tripDataJSON = localStorage.getItem('tripdata')
+    if(tripDataJSON !== null) {
+    return JSON.parse(tripDataJSON)
+    } else {
+        return []
+    }
+}
+
+const MY_DATA = getTripData()
 
 /* updateDOM function takes in input (string value) and id (to determine DOM location to update) 
 and creates and updates DOM elements*/
@@ -86,6 +95,10 @@ function renderTableHeadings() {
     return tbl;
 }
 
+function saveTripData() {
+    localStorage.setItem('tripdata', JSON.stringify(MY_DATA));
+}
+
 /* renderEditDelBtn the DOM creation of the buttons for handling edit and delete functionality in the table */
 
 function renderEditDelBtn(index) {
@@ -105,7 +118,8 @@ function renderEditDelBtn(index) {
         MY_DATA.splice(index, 1)
     })
     delBtn.addEventListener('click', function(e){
-        MY_DATA.splice(index, 1)
+        MY_DATA.splice(index, 1);
+        saveTripData()
         renderTable()
     })
     
