@@ -22,3 +22,13 @@ console.log(`myHappiness is typeof ${typeof myHappiness}`)
 //} else {
 
 //}
+
+let x = 5
+let y = 10
+let total = 15
+console.log(x + y === total)
+
+if (true) {
+    const total = 15
+    console.log(total)
+}
