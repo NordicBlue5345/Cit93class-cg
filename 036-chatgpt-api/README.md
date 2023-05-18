@@ -1,0 +1,3 @@
+- So I wont lie, this Api is going to take me a min to get used to. It is useful but still confusing in its own way. With this assignment, I had to use generic code because I have not done the assignment that was required for the code you were suggesting we use. But I started by asking if the AI could help me create a Header object and then if it could make it call to the API. From there I asking it if it could help me get a response back and it mentioned I would need to modify the code within the .then() block. And with the updated code it would be able to handle the the response back.
+
+- In the end this is tricky stuff, but it is definitely something I would want to take a further look at.
