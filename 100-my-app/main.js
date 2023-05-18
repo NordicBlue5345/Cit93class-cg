@@ -1,46 +1,35 @@
-const formEl = document.getElementById('form');
-const output = document.getElementById('output');
+// Global variables
+const decisionForm = document.getElementById('decision-form');
+const inputDataField = document.getElementById('input-data');
 
-let data = [];
-
-function updateDOM() {
-  output.innerHTML = '';
-
-  data.forEach((item, index) => {
-    const container = document.createElement('div');
-    container.classList.add('item');
-
-    const textEl = document.createElement('p');
-    textEl.textContent = item.text;
-    container.appendChild(textEl);
-
-    const editButton = document.createElement('button');
-    editButton.textContent = 'Edit';
-    editButton.addEventListener('click', () => {
-      const newText = prompt('Enter new text');
-      if (newText !== null) {
-        data[index].text = newText;
-        updateDOM();
-      }
-    });
-    container.appendChild(editButton);
-
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
-    deleteButton.addEventListener('click', () => {
-      data.splice(index, 1);
-      updateDOM();
-    });
-    container.appendChild(deleteButton);
-
-    output.appendChild(container);
-  });
+// Function to make a decision based on input data and selected option
+function makeDecision(data, option) {
+  let decision;
+  
+  if (option === 'Option 1') {
+    // Decision logic for Option 1
+    decision = `Option 1: ${data}`;
+  } else if (option === 'Option 2') {
+    // Decision logic for Option 2
+    decision = `Option 2: ${data}`;
+  } else if (option === 'Option 3') {
+    // Decision logic for Option 3
+    decision = `Option 3: ${data}`;
+  }
+  
+  // Return decision as an object
+  return { data, decision };
 }
 
-formEl.addEventListener('submit', function (e) {
+// Event listener for form submission
+decisionForm.addEventListener('submit', function (e) {
   e.preventDefault();
-  const text = e.target.text.value;
-  data.push({ text });
-  updateDOM();
-  formEl.reset();
+  
+  const inputData = inputDataField.value;
+  const selectedOption = document.querySelector('input[name="decision-option"]:checked').value;
+  
+  const result = makeDecision(inputData, selectedOption);
+  console.log(result);
+  
+  decisionForm.reset();
 });
