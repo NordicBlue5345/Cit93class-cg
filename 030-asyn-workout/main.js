@@ -1,24 +1,24 @@
-const formEl = document.getElementById('form');
-const output = document.getElementById('output');
+const formEl = document.getElementById('form')
+const output = document.getElementById('output')
 
-formEl.addEventListener('submit', function (e) {
+function updateDOM(message, el) {
+    const newEl = document.createElement(el)
+    newEl.textContent = message
+    output.appendChild(newEl)
+}
+
+function startWorkout (type, reps, time, fn) {
+    fn(`Start ${type} <> Goal reps is ${reps}`, 'p')
+    setTimeout(()=> {
+        fn(`Stop ${type}`, 'h1')
+    }, time * 1000)
+}
+
+formEl.addEventListener('submit', function(e) {
     e.preventDefault();
-    const type = e.target.type.value;
-    const reps = parseFloat(e.target.reps.value);
-    const time = parseFloat(e.target.time.value);
-
-    // Create a string with the exercise information
-    const exerciseInfo = `Type: ${type}, Reps: ${reps}`;
-
-    // Create a new paragraph element to display the exercise information
-    const exercisePara = document.createElement('p');
-    exercisePara.textContent = exerciseInfo;
-
-    // Append the paragraph element to the output container after a delay of 1 second
-    setTimeout(function() {
-        output.appendChild(exercisePara);
-    }, 1000);
-
-    // Reset the form inputs
-    formEl.reset();
-});
+    const type = e.target.type.value
+    const reps = parseFloat(e.target.reps.value)
+    const time = parseFloat(e.target.time.value)
+    startWorkout(type, reps, time, updateDOM)
+    formEl.reset()
+})
