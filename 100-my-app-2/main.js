@@ -31,13 +31,13 @@ function addRecipe(event) {
 
   console.log(`Recipe "${recipe.name}" has been added.`);
 
- // Make a decision based on the recipe name
-    if (recipe.name.toLowerCase() === 'pizza') {
-      console.log('Great choice! You added a pizza recipe.');
-    } else {
-      console.log(`You added a ${recipe.name} recipe.`);
-    }
-  
+  // Function to delete a recipe
+  function deleteRecipe(index) {
+    const recipe = recipes[index];
+    recipes.splice(index, 1);
+    updateRecipeList();
+    console.log(`Recipe "${recipe.name}" has been deleted.`);
+  }
 
   // Delete button
   const deleteButton = document.createElement('button');
@@ -59,7 +59,8 @@ function deleteRecipe(index) {
   console.log(`Recipe "${recipe.name}" has been deleted.`);
 }
 
-
+  // Create the recipe list item
+  let listItem = document.createElement('li');
 
 // Function to update the recipe list
 function updateRecipeList() {
@@ -100,6 +101,8 @@ function updateRecipeList() {
     });
     listItem.appendChild(deleteButton);
 
+    // Append the recipe list item to the recipe list
+    const recipeList = document.getElementById('recipeList');
     recipeList.appendChild(listItem);
   });
 }
