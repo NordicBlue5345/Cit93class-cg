@@ -4,14 +4,25 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="main.js"></script>
   <title>Recipe App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Recipe App</h1>
-  <button onclick="viewRecipes()">View Recipes</button>
-  <button onclick="updateCarbonaraRecipe()">Update Carbonara Recipe</button>
-  <button onclick="deleteCarbonaraRecipe()">Delete Carbonara Recipe</button>
+  <form id="recipeForm">
+    <h2>Add Recipe</h2>
+    <label for="recipeName">Recipe Name:</label>
+    <input type="text" id="recipeName" required>
+    <label for="recipeIngredients">Ingredients:</label>
+    <textarea id="recipeIngredients" rows="4" required></textarea>
+    <label for="recipeInstructions">Instructions:</label>
+    <textarea id="recipeInstructions" rows="4" required></textarea>
+    <button type="submit">Add Recipe</button>
+  </form>
 
+  <h2>Recipes</h2>
+  <ul id="recipeList"></ul>
+
+  <script src="main.js"></script>
 </body>
 </html>

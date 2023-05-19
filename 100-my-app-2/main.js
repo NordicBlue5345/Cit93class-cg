@@ -1,95 +1,144 @@
+// Function to add a new recipe
 // Define an array to store the recipes
-const recipes = [];
+let recipes = [];
 
 // Function to add a new recipe
-function addRecipe(name, ingredients, instructions) {
+function addRecipe(event) {
+  event.preventDefault();
+
+  // Get form input values
+  const recipeNameInput = document.getElementById('recipeName');
+  const recipeIngredientsInput = document.getElementById('recipeIngredients');
+  const recipeInstructionsInput = document.getElementById('recipeInstructions');
+
+  // Create a new recipe object
   const recipe = {
-    name: name,
-    ingredients: ingredients,
-    instructions: instructions
+    name: recipeNameInput.value,
+    ingredients: recipeIngredientsInput.value.split('\n'),
+    instructions: recipeInstructionsInput.value.split('\n')
   };
+
+  // Add the recipe to the recipes array
   recipes.push(recipe);
+
+  // Clear the form inputs
+  recipeNameInput.value = '';
+  recipeIngredientsInput.value = '';
+  recipeInstructionsInput.value = '';
+
+  // Update the recipe list
+  updateRecipeList();
+
+  console.log(`Recipe "${recipe.name}" has been added.`);
+
+ // Make a decision based on the recipe name
+    if (recipe.name.toLowerCase() === 'pizza') {
+      console.log('Great choice! You added a pizza recipe.');
+    } else {
+      console.log(`You added a ${recipe.name} recipe.`);
+    }
+  
+
+  // Delete button
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = 'Delete';
+  deleteButton.addEventListener('click', () => {
+    const index = recipes.indexOf(recipe);
+    deleteRecipe(index);
+  });
+  listItem.appendChild(deleteButton);
+
+  recipeList.appendChild(listItem);
 }
 
-// Example usage
-addRecipe('Chocolate Cake', ['Flour', 'Sugar', 'Cocoa Powder', 'Eggs'], '1. Mix dry ingredients. \n2. Add wet ingredients. \n3. Bake at 350°F for 30 minutes.');
-addRecipe('Carbonara', ['Spaghetti', 'Bacon', 'Eggs', 'Parmesan Cheese', 'Black Pepper'],'1. Cook spaghetti according to package instructions. \n2. In a pan, fry the bacon until crispy. \n3. In a bowl, beat the eggs and mix in grated Parmesan cheese. \n4. Drain the cooked spaghetti and add it to the pan with the bacon. \n5. Remove the pan from heat and quickly pour in the egg mixture, stirring well to coat the spaghetti. \n6. Season with black pepper and serve immediately.');
+// Function to delete a recipe
+function deleteRecipe(index) {
+  const recipe = recipes[index];
+  recipes.splice(index, 1);
+  updateRecipeList();
+  console.log(`Recipe "${recipe.name}" has been deleted.`);
+}
 
-// Function to view all recipes
-function viewRecipes() {
+
+
+// Function to update the recipe list
+function updateRecipeList() {
+  const recipeList = document.getElementById('recipeList');
+  recipeList.innerHTML = ''; // Clear the list
+
   recipes.forEach((recipe, index) => {
-    console.log(`Recipe ${index + 1}: ${recipe.name}`);
-    console.log(`Ingredients: ${recipe.ingredients.join(', ')}`);
-    console.log(`Instructions: ${recipe.instructions}`);
-    console.log('------------------------');
+    const listItem = document.createElement('li');
+
+    // Recipe name
+    const nameElement = document.createElement('h3');
+    nameElement.textContent = recipe.name;
+    listItem.appendChild(nameElement);
+
+    // Ingredients
+    const ingredientsElement = document.createElement('p');
+    ingredientsElement.textContent = `Ingredients: ${recipe.ingredients.join(', ')}`;
+    listItem.appendChild(ingredientsElement);
+
+    // Instructions
+    const instructionsElement = document.createElement('p');
+    instructionsElement.textContent = `Instructions: ${recipe.instructions.join('\n')}`;
+    listItem.appendChild(instructionsElement);
+
+    // Edit button
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.addEventListener('click', () => {
+      editRecipe(index);
+    });
+    listItem.appendChild(editButton);
+
+    // Delete button
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', () => {
+      deleteRecipe(index);
+    });
+    listItem.appendChild(deleteButton);
+
+    recipeList.appendChild(listItem);
   });
 }
 
-// Function to display the recipes
-function displayRecipes() {
-  const recipesContainer = document.getElementById('recipesContainer');
-  recipesContainer.innerHTML = ''; // Clear the container
+// Function to edit a recipe
+function editRecipe(index) {
+  const recipe = recipes[index];
 
-  recipes.forEach((recipe, index) => {
-    const recipeElement = document.createElement('div');
-    recipeElement.innerHTML = `
-      <h3>Recipe ${index + 1}: ${recipe.name}</h3>
-      <p><strong>Ingredients:</strong> ${recipe.ingredients.join(', ')}</p>
-      <p><strong>Instructions:</strong> ${recipe.instructions}</p>
-      <hr>
-    `;
-    recipesContainer.appendChild(recipeElement);
+  // Set form inputs with recipe data
+  const recipeNameInput = document.getElementById('recipeName');
+  const recipeIngredientsInput = document.getElementById('recipeIngredients');
+  const recipeInstructionsInput = document.getElementById('recipeInstructions');
+
+  recipeNameInput.value = recipe.name;
+  recipeIngredientsInput.value = recipe.ingredients.join('\n');
+  recipeInstructionsInput.value = recipe.instructions.join('\n');
+
+  // Update the recipe
+  document.getElementById('recipeForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    recipe.name = recipeNameInput.value;
+    recipe.ingredients = recipeIngredientsInput.value.split('\n');
+    recipe.instructions = recipeInstructionsInput.value.split('\n');
+
+    // Clear the form inputs
+    recipeNameInput.value = '';
+    recipeIngredientsInput.value = '';
+    recipeInstructionsInput.value = '';
+
+    // Update the recipe list
+    updateRecipeList();
+
+    console.log(`Recipe "${recipe.name}" has been updated.`);
   });
 }
 
+// Event listener for adding a recipe
+document.getElementById('recipeForm').addEventListener('submit', addRecipe);
 
-
-// Function to update the carbonara recipe
-function updateCarbonaraRecipe() {
-  updateRecipe(
-    'Carbonara',
-    ['Spaghetti', 'Guanciale', 'Eggs', 'Parmesan Cheese', 'Black Pepper'],
-    '1. Cook spaghetti according to package instructions. \n2. In a pan, fry the guanciale until crispy. \n3. In a bowl, beat the eggs and mix in grated Parmesan cheese. \n4. Drain the cooked spaghetti and add it to the pan with the guanciale. \n5. Remove the pan from heat and quickly pour in the egg mixture, stirring well to coat the spaghetti. \n6. Season with black pepper and serve immediately.'
-  );
-  console.log('Carbonara recipe has been updated.');
-}
-
-// Function to delete the carbonara recipe
-function deleteCarbonaraRecipe() {
-  // Implementation for deleting the carbonara recipe
-  console.log('Carbonara recipe has been deleted.');
-}
-
-
-// Add a new recipe
-addRecipe(
-  'Carbonara',
-  ['Spaghetti', 'Bacon', 'Eggs', 'Parmesan Cheese', 'Black Pepper'],
-  '1. Cook spaghetti according to package instructions. \n2. In a pan, fry the bacon until crispy. \n3. In a bowl, beat the eggs and mix in grated Parmesan cheese. \n4. Drain the cooked spaghetti and add it to the pan with the bacon. \n5. Remove the pan from heat and quickly pour in the egg mixture, stirring well to coat the spaghetti. \n6. Season with black pepper and serve immediately.'
-);
-
-// View all recipes
-console.log('Recipes:');
-viewRecipes();
-
-// Define the updateRecipe function
-function updateRecipe(name, ingredients, instructions) {
-  console.log(`Recipe updated for ${name}`);
-  console.log(`Ingredients: ${ingredients.join(', ')}`);
-  console.log(`Instructions: \n${instructions}`);
-}
-
-// Call the updateRecipe function to update the carbonara recipe
-updateRecipe(
-  'Carbonara',
-  ['Spaghetti', 'Guanciale', 'Eggs', 'Parmesan Cheese', 'Black Pepper'],
-  '1. Cook spaghetti according to package instructions. \n2. In a pan, fry the guanciale until crispy. \n3. In a bowl, beat the eggs and mix in grated Parmesan cheese. \n4. Drain the cooked spaghetti and add it to the pan with the guanciale. \n5. Remove the pan from heat and quickly pour in the egg mixture, stirring well to coat the spaghetti. \n6. Season with black pepper and serve immediately.'
-);
-
-// View all recipes after update
-console.log('Recipes after update:');
-viewRecipes();
-
-// View all recipes after deletion
-console.log('Recipes after deletion:');
-viewRecipes();
+// Initial recipe list
+updateRecipeList();
